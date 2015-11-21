@@ -6,10 +6,7 @@
 #define LED1 (1 << (5*2))   //GPB5
 #define LED2 (1 << (6*2))   //GPB6
 #define LED3 (1 << (7*2))   //GPB7
-C
-C
 #define LED4 (1 << (8*2))   //GPB8
-
 
 #define KEY1 (~(3 << (0*2)))  //GPG0
 #define KEY2 (~(3 << (3*2)))  //GPG3
