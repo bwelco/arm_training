@@ -1,10 +1,4 @@
-
-#define	GPFCON		(*(volatile unsigned long *)0x56000050)
-#define	GPFDAT		(*(volatile unsigned long *)0x56000054)
-
-#define	GPF4_out	(1<<(4*2))
-#define	GPF5_out	(1<<(5*2))
-#define	GPF6_out	(1<<(6*2))
+#include "2440addr.h"
 
 void  wait(volatile unsigned long dly)
 {
@@ -13,15 +7,15 @@ void  wait(volatile unsigned long dly)
 
 int main(void)
 {
-	unsigned long i = 0;
-	
-	GPFCON = GPF4_out|GPF5_out|GPF6_out;		// ½«LED1,2,4¶ÔÓ¦µÄGPF4/5/6Èý¸öÒý½ÅÉèÎªÊä³ö
+	unsigned long i = 5;
+
+	rGPBCON = (1 << 10) | (1 << 12) | (1 << 14) | (1 << 16);		// Å“Â«LED1-4Â¶Ã”Ã“Å ÂµÃ„GPB4Å¾Ã¶Ã’Ã½Å“Ã…Ã‰Ã¨ÃŽÂªÃŠÃ¤Â³Ã¶
 
 	while(1){
-		wait(30000);
-		GPFDAT = (~(i<<4));	 	// ¸ù¾ÝiµÄÖµ£¬µãÁÁLED1,2,4
-		if(++i == 8)
-			i = 0;
+		wait(50000);
+		rGPBDAT = (~(1 << i));	 	// Å¾Ã¹Å¸ÃiÂµÃ„Ã–ÂµÂ£Â¬ÂµÃ£ÃÃLED1-4
+		if(++i == 9)
+			i = 5;
 	}
 
 	return 0;

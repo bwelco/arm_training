@@ -24,6 +24,12 @@ disable_watch_dog:
     mov r1,     #0x53000000
     mov r2,     #0x0
     str r2,     [r1]
+    ldr r1,     =0x56000010
+    mov r2,     #0x00001400
+    str r2,     [r1]
+    ldr r1,     =0x56000014
+    mov r2,     #0x00000000
+    str r2,     [r1]
     mov pc,     lr      @ ·µ»Ø
 
 copy_steppingstone_to_sdram:
